@@ -8,9 +8,24 @@ public class PlayerCharacter : MonoBehaviour
     private Vector2 inputs;
     public bool interacting;
 
+    Rigidbody2D rb;
+
+    public float speed;
+
     private void Awake()
     {
         SetUpControlls();
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void FixedUpdate()
+    {
+        Move();
+    }
+
+    void Move()
+    {
+        rb.velocity = inputs.normalized * speed;
     }
 
     #region Controlls

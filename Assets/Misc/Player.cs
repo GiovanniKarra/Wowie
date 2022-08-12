@@ -240,8 +240,19 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""1439b620-904e-4b95-b3a3-b047cd1e8111"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""id"": ""a634a826-3a70-4d90-a628-7d7e9ba33fe1"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""de4f5820-d674-4435-93ed-9041d458706d"",
+                    ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
