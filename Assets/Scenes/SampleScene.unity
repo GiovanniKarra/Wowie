@@ -454,7 +454,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.21
+  m_Radius: 0.5
 --- !u!212 &686994744
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -934,7 +934,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7608792678792071428, guid: 192184d53bace2a44b17bad42868bd9a, type: 3}
       propertyPath: perceptionRange
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7608792678792071430, guid: 192184d53bace2a44b17bad42868bd9a, type: 3}
       propertyPath: m_RootOrder
