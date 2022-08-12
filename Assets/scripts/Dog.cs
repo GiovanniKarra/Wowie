@@ -27,7 +27,7 @@ public class Dog : MonoBehaviour
         Vector2 direction = target.transform.position - transform.position;
         if (direction.magnitude >= radius)
         {
-            rb.velocity = -direction.normalized * speed;
+            rb.velocity = direction.normalized * speed;
         }
         else
         {
