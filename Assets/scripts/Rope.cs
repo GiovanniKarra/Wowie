@@ -17,7 +17,6 @@ public class Rope : MonoBehaviour
 
     private void Update()
     {
-        print(dog); print(player);
         rope.SetPosition(0, player.position); rope.SetPosition(1, dog.position);
     }
 }
