@@ -78,9 +78,15 @@ public class Dog : MonoBehaviour
                 GoTowards(player.gameObject, 2);
                 break;
             case MODE.INTEREST:
-                GoTowards(interest, 1.5f, 1.5f);
+                GoTowards(interest, 1.5f, 2);
                 break;
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, perceptionRange);
     }
 
     enum MODE
