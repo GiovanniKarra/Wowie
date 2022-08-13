@@ -8,6 +8,12 @@ public class InterestPoint : MonoBehaviour
     public int Type { get { return (int)type; } }
     public float value;
     public float radius;
+    [HideInInspector] public bool available;
+
+    private void Awake()
+    {
+        available = true;
+    }
 }
 
 public enum TYPE
