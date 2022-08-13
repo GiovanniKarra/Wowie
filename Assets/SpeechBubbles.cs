@@ -42,6 +42,13 @@ public class SpeechBubbles : MonoBehaviour
             }
         }
 
-        print($"{rankedTypes[0]} / {rankedTypes[1]} / {rankedTypes[2]}");
+        spr1.sprite = sprites[(int)rankedTypes[0]];
+        spr2.sprite = sprites[(int)rankedTypes[1]];
+        spr3.sprite = sprites[(int)rankedTypes[2]];
+
+        sr1.transform.localScale = Vector2.one * dog.interestValues[(int)rankedTypes[0]] / 100f;
+        sr2.transform.localScale = Vector2.one * dog.interestValues[(int)rankedTypes[1]] / 100f;
+        sr3.transform.localScale = Vector2.one * dog.interestValues[(int)rankedTypes[2]] / 100f;
+
     }
 }
