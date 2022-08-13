@@ -14,6 +14,8 @@ public class PlayerCharacter : MonoBehaviour
     public float speed;
 
     Dog dog;
+    bool stun;
+    float unstunTime;
 
     private void Awake()
     {
@@ -29,7 +31,7 @@ public class PlayerCharacter : MonoBehaviour
 
     private void Update()
     {
-        if (interacting && Vector2.Distance(transform.position, dog.transform.position) < 1.5f)
+        if (Vector2.Distance(transform.position, dog.transform.position) < 1f)
         {
             dog.Unfree();
         }
@@ -38,22 +40,16 @@ public class PlayerCharacter : MonoBehaviour
     public void Fall()
     {
         dog.Free();
-        StopAllCoroutines();
-        StartCoroutine(Stun());
-    }
-
-    IEnumerator Stun()
-    {
-        float temp = speed;
-        speed = 0;
-
-        yield return new WaitForSeconds(3);
-
-        speed = temp;
+        stun = true;
     }
 
     void Move()
     {
+        if (stun)
+        {
+            if (unstunTime <= Time.deltaTime) stun = false;
+            else return;
+        }
         rb.velocity = inputs.normalized * speed;
     }
 
