@@ -11,7 +11,7 @@ public class Dog : MonoBehaviour
     MODE mode;
 
     PlayerCharacter player;
-    Rigidbody2D rb;
+    [HideInInspector] public Rigidbody2D rb;
     DistanceJoint2D dj;
     float ropeRange;
 
@@ -19,6 +19,7 @@ public class Dog : MonoBehaviour
     float stopRange;
 
     float boost = 1;
+    bool wandering = false;
 
     float[] interestValues = { 50, 50, 50 }; // piss, horniness, aggro
 
@@ -26,13 +27,21 @@ public class Dog : MonoBehaviour
     {
         player = FindObjectOfType<PlayerCharacter>();
         rb = GetComponent<Rigidbody2D>();
-        mode = MODE.NORMAL;
         dj = GetComponent<DistanceJoint2D>();
+    }
+
+    private void Start()
+    {
+        mode = MODE.NORMAL;
         ropeRange = dj.distance;
+        stopPoint = transform.position;
     }
 
     private void FixedUpdate()
     {
+        if (player.rb.velocity != Vector2.zero) wandering = false;
+
+        boost = Mathf.Lerp(boost, 1, Time.deltaTime);
         Move();
         Stop();
     }
@@ -59,6 +68,7 @@ public class Dog : MonoBehaviour
         if ((stopPoint - transform.position).magnitude <= stopRange)
         {
             rb.velocity = Vector2.zero;
+            stopPoint = transform.position;
         }
     }
 
@@ -101,6 +111,11 @@ public class Dog : MonoBehaviour
 
     void Wander(Vector2 center, float radius)
     {
+        if (!wandering)
+        {
+            rb.velocity = Vector2.zero;
+            wandering = true;
+        }
         if (rb.velocity != Vector2.zero) return;
         if (Random.Range(0, 100f) > 1.8f) return;
 
@@ -121,14 +136,21 @@ public class Dog : MonoBehaviour
         switch (mode)
         {
             case MODE.NORMAL:
-                if (player.rb.velocity != Vector2.zero) GoTowards(player.transform.position, 2);
+                if (player.rb.velocity != Vector2.zero)
+                {
+                    GoTowards(player.transform.position, 2);
+                }
                 else Wander(player.transform.position, 2.5f);
                 break;
             case MODE.INTEREST:
                 GoTowards(interest.transform.position, 1.5f, boost);
-                boost = Mathf.Lerp(boost, 1, Time.deltaTime);
                 break;
         }
+    }
+
+    public Vector2 GetDirection()
+    {
+        return stopPoint - transform.position;
     }
 
     private void OnDrawGizmosSelected()
