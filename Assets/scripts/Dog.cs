@@ -35,6 +35,7 @@ public class Dog : MonoBehaviour
     private void FixedUpdate()
     {
         if (player.rb.velocity != Vector2.zero) wandering = false;
+
         boost = Mathf.Lerp(boost, 1, Time.deltaTime);
         Move();
         Stop();
@@ -131,8 +132,7 @@ public class Dog : MonoBehaviour
             case MODE.NORMAL:
                 if (player.rb.velocity != Vector2.zero)
                 {
-                    boost = 2.5f;
-                    GoTowards((Vector2)player.transform.position + player.rb.velocity.normalized * 5, 0.01f, boost);
+                    GoTowards(player.transform.position, 2);
                 }
                 else Wander(player.transform.position, 2.5f);
                 break;
