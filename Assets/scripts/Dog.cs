@@ -105,8 +105,9 @@ public class Dog : MonoBehaviour
         if (Random.Range(0, 100f) > 1.8f) return;
 
         float randX = Random.Range(center.x - radius, center.x + radius);
-        float randY =
-            Random.Range(-Mathf.Sin(Mathf.Acos((randX-center.x)/radius))*radius+center.y, Mathf.Sin(Mathf.Acos((randX-center.x)/radius))*radius+center.y);
+        float randY = Random.Range(
+            -Mathf.Sin(Mathf.Acos((randX-center.x)/radius))*radius+center.y,
+            Mathf.Sin(Mathf.Acos((randX-center.x)/radius))*radius+center.y);
         Vector2 RandPos = new Vector2(randX, randY);
 
         GoTowards(RandPos, 0.05f, 0.65f);
