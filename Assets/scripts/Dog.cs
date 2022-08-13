@@ -20,9 +20,7 @@ public class Dog : MonoBehaviour
 
     float boost = 1;
 
-    float aggro = 50;
-    float piss = 50;
-    float horniness = 50;
+    float[] interestValues = { 50, 50, 50 }; // piss, horniness, aggro
 
     private void Awake()
     {
@@ -41,7 +39,7 @@ public class Dog : MonoBehaviour
 
     private void Update()
     {
-        DetectInterest();
+        InterestDetect();
         RopeDetect();
     }
 
@@ -73,13 +71,29 @@ public class Dog : MonoBehaviour
         stopRange = radius;
     }
 
-    void DetectInterest()
+    void InterestDetect()
     {
         RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, perceptionRange, Vector3.forward, 1, LayerMask.GetMask("Interest"));
 
         if (hits.Length != 0 && mode != MODE.INTEREST)
         {
-            interest = hits[0].collider.gameObject;
+            foreach (RaycastHit2D hit in hits)
+            {
+                InterestPoint interestPoint = hit.collider.GetComponent<InterestPoint>();
+                int type = (int)interestPoint.type;
+
+                NewInterest(interestPoint, type);
+            }
+        }
+    }
+
+    void NewInterest(InterestPoint newInterest, int type)
+    {
+        interestValues[type] += newInterest.value * Time.deltaTime;
+
+        if (interestValues[type] >= 100)
+        {
+            interest = newInterest.gameObject;
             boost = 4;
             mode = MODE.INTEREST;
         }

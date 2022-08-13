@@ -5,6 +5,7 @@ using UnityEngine;
 public class InterestPoint : MonoBehaviour
 {
     public TYPE type;
+    public float value;
 }
 
 public enum TYPE
