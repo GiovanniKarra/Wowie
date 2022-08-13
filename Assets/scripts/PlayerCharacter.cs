@@ -27,9 +27,18 @@ public class PlayerCharacter : MonoBehaviour
         Move();
     }
 
+    private void Update()
+    {
+        if (interacting && Vector2.Distance(transform.position, dog.transform.position) < 1.5f)
+        {
+            dog.Unfree();
+        }
+    }
+
     public void Fall()
     {
         dog.Free();
+        StopAllCoroutines();
         StartCoroutine(Stun());
     }
 
