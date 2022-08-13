@@ -107,7 +107,7 @@ public class Dog : MonoBehaviour
                 break;
             case MODE.INTEREST:
                 GoTowards(interest.transform.position, 1.5f, boost);
-                boost = Mathf.Lerp(boost, 1, 0.25f);
+                boost = Mathf.Lerp(boost, 1, Time.deltaTime);
                 break;
         }
     }

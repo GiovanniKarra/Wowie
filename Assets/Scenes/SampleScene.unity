@@ -491,15 +491,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1236379703}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: a9c0079fc3cc79a4799f6186541f4022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   follow: {fileID: 1703463250}
-  cm: {fileID: 0}
   followX: 1
   followY: 1
   offset: {x: 0, y: 0, z: 0}
-  targetZoom: 0
 --- !u!4 &1236379705
 Transform:
   m_ObjectHideFlags: 0
