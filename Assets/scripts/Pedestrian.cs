@@ -10,6 +10,8 @@ public class Pedestrian : MonoBehaviour
     bool moving = false;
     Vector3 targetPos;
 
+    bool fell = false;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -17,12 +19,15 @@ public class Pedestrian : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (moving && (transform.position - targetPos).magnitude < 0.05f)
+        if (!fell)
         {
-            rb.velocity = Vector2.zero;
-            moving = false;
+            if (moving && (transform.position - targetPos).magnitude < 0.05f)
+            {
+                rb.velocity = Vector2.zero;
+                moving = false;
+            }
+            Wander(20);
         }
-        Wander(20);
     }
 
     void GoTowards(Vector3 target, float mod = 1)
@@ -36,6 +41,8 @@ public class Pedestrian : MonoBehaviour
 
     void Wander(float radius)
     {
+        fell = false;
+
         if (moving) return;
         if (Random.Range(0, 100f) > 2f) return;
 
@@ -49,8 +56,25 @@ public class Pedestrian : MonoBehaviour
         GoTowards(RandPos, 0.5f);
     }
 
+    void Stop()
+    {
+        targetPos = transform.position;
+        rb.velocity = Vector2.zero;
+        moving = false;
+    }
+
     public void Fall()
     {
-        print("AAAAAAAAAAAH");
+        fell = true;
+
+        Vector2 direction = (targetPos - transform.position).normalized; // si jamais je veux le propulser en avant
+        Stop();
+
+        Invoke("Unfall", 4);
+    }
+
+    void Unfall()
+    {
+        fell = false;
     }
 }
