@@ -796,10 +796,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 356494369, guid: ce2221b82806c1c4a91059aaa489aa19, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 7e3719abefd2e9a4eaf359478073e28e, type: 3}
     - target: {fileID: 1720761630576505541, guid: ce2221b82806c1c4a91059aaa489aa19, type: 3}
       propertyPath: m_Name
       value: Player
@@ -848,20 +844,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7565470749467262589, guid: ce2221b82806c1c4a91059aaa489aa19, type: 3}
-      propertyPath: m_Size.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7565470749467262589, guid: ce2221b82806c1c4a91059aaa489aa19, type: 3}
-      propertyPath: m_Size.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7565470749467262589, guid: ce2221b82806c1c4a91059aaa489aa19, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7565470749467262589, guid: ce2221b82806c1c4a91059aaa489aa19, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce2221b82806c1c4a91059aaa489aa19, type: 3}
 --- !u!1001 &7608792679114129641
 PrefabInstance:
@@ -884,7 +867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7608792678792071430, guid: 192184d53bace2a44b17bad42868bd9a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7608792678792071430, guid: 192184d53bace2a44b17bad42868bd9a, type: 3}
       propertyPath: m_LocalPosition.z
