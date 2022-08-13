@@ -172,9 +172,15 @@ public class Dog : MonoBehaviour
                 break;
 
             case MODE.FREE:
-
+                Wander(player.transform.position, ropeRange * 5);
                 break;
         }
+    }
+
+    void Free()
+    {
+        mode = MODE.FREE;
+        dj.distance = ropeRange * 10;
     }
 
     public Vector2 GetDirection()
