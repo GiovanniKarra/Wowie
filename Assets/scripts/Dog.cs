@@ -90,9 +90,7 @@ public class Dog : MonoBehaviour
             foreach (RaycastHit2D hit in hits)
             {
                 InterestPoint interestPoint = hit.collider.GetComponent<InterestPoint>();
-                int type = interestPoint.Type;
-
-                NewInterest(interestPoint, type);
+                NewInterest(interestPoint, interestPoint.Type);
             }
         }
     }
@@ -111,9 +109,19 @@ public class Dog : MonoBehaviour
 
     void InterestInteract()
     {
+        //  /!\
+        // valeurs placeholder
+        //  /!\
+
         if (rb.velocity == Vector2.zero && (interest.transform.position - transform.position).magnitude <= interest.radius)
         {
-            //interestValues[interest.Type] =
+            interestValues[interest.Type] -= Mathf.Min(10 * Time.deltaTime, interestValues[interest.Type]);
+            print("he he he");
+        }
+        if (interestValues[interest.Type] <= 0 || (interestValues[interest.Type] <= 70 &&
+            (interest.transform.position - transform.position).magnitude > interest.radius))
+        {
+            mode = MODE.NORMAL;
         }
     }
 
