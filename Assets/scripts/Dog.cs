@@ -7,7 +7,7 @@ public class Dog : MonoBehaviour
     public float speed;
     public float perceptionRange;
 
-    GameObject interest;
+    InterestPoint interest;
     MODE mode;
 
     PlayerCharacter player;
@@ -90,7 +90,7 @@ public class Dog : MonoBehaviour
             foreach (RaycastHit2D hit in hits)
             {
                 InterestPoint interestPoint = hit.collider.GetComponent<InterestPoint>();
-                int type = (int)interestPoint.type;
+                int type = interestPoint.Type;
 
                 NewInterest(interestPoint, type);
             }
@@ -103,9 +103,17 @@ public class Dog : MonoBehaviour
 
         if (interestValues[type] >= 100)
         {
-            interest = newInterest.gameObject;
+            interest = newInterest;
             boost = 4.5f;
             mode = MODE.INTEREST;
+        }
+    }
+
+    void InterestInteract()
+    {
+        if (rb.velocity == Vector2.zero && (interest.transform.position - transform.position).magnitude <= interest.radius)
+        {
+            //interestValues[interest.Type] =
         }
     }
 
@@ -143,7 +151,8 @@ public class Dog : MonoBehaviour
                 else Wander(player.transform.position, 2.5f);
                 break;
             case MODE.INTEREST:
-                GoTowards(interest.transform.position, 1.5f, boost);
+                InterestInteract();
+                GoTowards(interest.transform.position, interest.radius, boost);
                 break;
         }
     }
