@@ -8,7 +8,8 @@ public class PlayerCharacter : MonoBehaviour
     private Vector2 inputs;
     public bool interacting;
 
-    Rigidbody2D rb;
+    [HideInInspector]
+    public Rigidbody2D rb;
 
     public float speed;
 

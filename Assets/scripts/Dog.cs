@@ -15,6 +15,9 @@ public class Dog : MonoBehaviour
     DistanceJoint2D dj;
     float ropeRange;
 
+    Vector3 stopPoint;
+    float stopRange;
+
     private void Awake()
     {
         player = FindObjectOfType<PlayerCharacter>();
@@ -27,6 +30,7 @@ public class Dog : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+        Stop();
     }
 
     private void Update()
@@ -46,17 +50,21 @@ public class Dog : MonoBehaviour
         }
     }
 
-    void GoTowards(GameObject target, float radius, float mod=1)
+    void Stop()
     {
-        Vector2 direction = target.transform.position - transform.position;
-        if (direction.magnitude >= radius)
-        {
-            rb.velocity = direction.normalized * speed * mod;
-        }
-        else
+        if ((stopPoint - transform.position).magnitude <= stopRange)
         {
             rb.velocity = Vector2.zero;
         }
+    }
+
+    void GoTowards(Vector3 target, float radius, float mod=1)
+    {
+        Vector2 direction = target - transform.position;
+        rb.velocity = direction.normalized * speed * mod;
+
+        stopPoint = target;
+        stopRange = radius;
     }
 
     void Detect()
@@ -70,15 +78,32 @@ public class Dog : MonoBehaviour
         }
     }
 
+    void Wander(Vector2 center, float radius)
+    {
+        if (rb.velocity != Vector2.zero) return;
+        if (Random.Range(0, 100f) > 2) return;
+
+        float randX = Random.Range(center.x - radius, center.x + radius);
+        float randY =
+            Random.Range(-Mathf.Sin(Mathf.Acos((randX-center.x)/radius))*radius+center.y, Mathf.Sin(Mathf.Acos((randX-center.x)/radius))*radius+center.y);
+        Vector2 RandPos = new Vector2(randX, randY);
+
+        GoTowards(RandPos, 0.05f, 0.75f);
+
+        stopPoint = RandPos;
+        stopRange = 0.05f;
+    }
+
     void Move()
     {
         switch (mode)
         {
             case MODE.NORMAL:
-                GoTowards(player.gameObject, 2);
+                if (player.rb.velocity != Vector2.zero) GoTowards(player.transform.position, 2);
+                else Wander(player.transform.position, 2.5f);
                 break;
             case MODE.INTEREST:
-                GoTowards(interest, 1.5f, 2);
+                GoTowards(interest.transform.position, 1.5f, 2);
                 break;
         }
     }
