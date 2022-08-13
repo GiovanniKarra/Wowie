@@ -13,15 +13,34 @@ public class PlayerCharacter : MonoBehaviour
 
     public float speed;
 
+    Dog dog;
+
     private void Awake()
     {
         SetUpControlls();
         rb = GetComponent<Rigidbody2D>();
+        dog = FindObjectOfType<Dog>();
     }
 
     private void FixedUpdate()
     {
         Move();
+    }
+
+    public void Fall()
+    {
+        dog.Free();
+        StartCoroutine(Stun());
+    }
+
+    IEnumerator Stun()
+    {
+        float temp = speed;
+        speed = 0;
+
+        yield return new WaitForSeconds(3);
+
+        speed = temp;
     }
 
     void Move()

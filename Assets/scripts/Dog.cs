@@ -15,6 +15,7 @@ public class Dog : MonoBehaviour
     DistanceJoint2D dj;
     float ropeRange;
     GameObject piss;
+    Rope rope;
 
     Vector3 stopPoint;
     float stopRange;
@@ -30,6 +31,7 @@ public class Dog : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         dj = GetComponent<DistanceJoint2D>();
         piss = Resources.Load<GameObject>(@"prefabs\Piss");
+        rope = FindObjectOfType<Rope>();
     }
 
     private void Start()
@@ -56,6 +58,8 @@ public class Dog : MonoBehaviour
 
     void RopeDetect()
     {
+        if (mode == MODE.FREE) return;
+
         RaycastHit2D hit =
             Physics2D.Raycast(transform.position, player.transform.position - transform.position, ropeRange, LayerMask.GetMask("Walker"));
 
@@ -85,6 +89,8 @@ public class Dog : MonoBehaviour
 
     void InterestDetect()
     {
+        if (mode == MODE.FREE) return;
+
         RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, perceptionRange, Vector3.forward, 1, LayerMask.GetMask("Interest"));
 
         if (hits.Length != 0 && mode != MODE.INTEREST)
@@ -132,7 +138,7 @@ public class Dog : MonoBehaviour
         }
     }
 
-    void Wander(Vector2 center, float radius)
+    void Wander(Vector2 center, float radius, float mod=1)
     {
         if (!wandering)
         {
@@ -140,7 +146,7 @@ public class Dog : MonoBehaviour
             wandering = true;
         }
         if (rb.velocity != Vector2.zero) return;
-        if (Random.Range(0, 100f) > 1.8f) return;
+        if (Random.Range(0, 100f) > 1.8f * mod) return;
 
         float randX = Random.Range(center.x - radius, center.x + radius);
         float randY = Random.Range(
@@ -148,7 +154,7 @@ public class Dog : MonoBehaviour
             Mathf.Sin(Mathf.Acos((randX-center.x)/radius))*radius+center.y);
         Vector2 RandPos = new Vector2(randX, randY);
 
-        GoTowards(RandPos, 0.05f, 0.65f);
+        GoTowards(RandPos, 0.05f, 0.65f * mod);
 
         stopPoint = RandPos;
         stopRange = 0.05f;
@@ -172,15 +178,25 @@ public class Dog : MonoBehaviour
                 break;
 
             case MODE.FREE:
-                Wander(player.transform.position, ropeRange * 5);
+                if (Vector2.Dot(player.rb.velocity.normalized, (transform.position - player.transform.position).normalized) > 0.7f)
+                    GoTowards((Vector2)transform.position + player.rb.velocity * 20, 0.05f);
+                else Wander(player.transform.position, ropeRange * 5, 1.5f);
                 break;
         }
     }
 
-    void Free()
+    public void Free()
     {
         mode = MODE.FREE;
         dj.distance = ropeRange * 10;
+        rope.gameObject.SetActive(false);
+    }
+
+    public void Unfree()
+    {
+        mode = MODE.NORMAL;
+        dj.distance = ropeRange;
+        rope.gameObject.SetActive(true);
     }
 
     public Vector2 GetDirection()

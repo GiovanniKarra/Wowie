@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Pedestrian : MonoBehaviour
 {
+    PlayerCharacter player;
     Rigidbody2D rb;
 
     public float speed;
@@ -12,21 +13,44 @@ public class Pedestrian : MonoBehaviour
 
     bool fell = false;
 
+    MOOD mood;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        player = FindObjectOfType<PlayerCharacter>();
+    }
+
+    private void Start()
+    {
+        mood = MOOD.WANDER;
     }
 
     private void FixedUpdate()
     {
         if (!fell)
         {
-            if (moving && (transform.position - targetPos).magnitude < 0.05f)
+            switch (mood)
             {
-                rb.velocity = Vector2.zero;
-                moving = false;
+                case MOOD.WANDER:
+                    if (moving && (transform.position - targetPos).magnitude < 0.05f)
+                    {
+                        rb.velocity = Vector2.zero;
+                        moving = false;
+                    }
+                    Wander(20);
+                    break;
+                case MOOD.ANGRY:
+                    GoTowards(player.transform.position);
+                    if ((transform.position - targetPos).magnitude < 1f)
+                    {
+                        rb.velocity = Vector2.zero;
+                        moving = false;
+                        player.Fall();
+                        mood = MOOD.WANDER;
+                    }
+                    break;
             }
-            Wander(20);
         }
     }
 
@@ -76,5 +100,12 @@ public class Pedestrian : MonoBehaviour
     void Unfall()
     {
         fell = false;
+        mood = MOOD.ANGRY;
+    }
+
+    enum MOOD
+    {
+        WANDER,
+        ANGRY
     }
 }
