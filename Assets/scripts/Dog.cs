@@ -63,6 +63,7 @@ public class Dog : MonoBehaviour
         if ((stopPoint - transform.position).magnitude <= stopRange)
         {
             rb.velocity = Vector2.zero;
+            stopPoint = transform.position;
         }
     }
 
@@ -140,6 +141,11 @@ public class Dog : MonoBehaviour
                 GoTowards(interest.transform.position, 1.5f, boost);
                 break;
         }
+    }
+
+    public Vector2 GetDirection()
+    {
+        return stopPoint - transform.position;
     }
 
     private void OnDrawGizmosSelected()
