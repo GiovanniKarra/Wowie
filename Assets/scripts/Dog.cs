@@ -23,7 +23,7 @@ public class Dog : MonoBehaviour
     float boost = 1;
     bool wandering = false;
 
-    float[] interestValues = { 50, 50, 50 }; // piss, horniness, aggro
+    public float[] interestValues = { 50, 50, 50 }; // piss, horniness, aggro
 
     private void Awake()
     {

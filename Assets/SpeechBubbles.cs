@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class SpeechBubbles : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public SpriteRenderer sr1;
+    public SpriteRenderer sr2;
+    public SpriteRenderer sr3;
+
+    Dog dog;
+
+    private void Awake()
     {
-        
+        dog = GetComponentInParent<Dog>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        for (int i = 0; i < (int)TYPE.MAX-1; i++)
+        {
+            //dog.interestValues[(int)TYPE];
+        }
     }
 }

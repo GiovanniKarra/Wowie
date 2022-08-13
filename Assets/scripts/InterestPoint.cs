@@ -20,5 +20,6 @@ public enum TYPE
 {
     PISS,
     HORNINESS,
-    AGGRO
+    AGGRO,
+    MAX
 }
