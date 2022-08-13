@@ -29,7 +29,7 @@ public class Dog : MonoBehaviour
         player = FindObjectOfType<PlayerCharacter>();
         rb = GetComponent<Rigidbody2D>();
         dj = GetComponent<DistanceJoint2D>();
-        piss = Resources.Load<GameObject>("Piss");
+        piss = Resources.Load<GameObject>(@"prefabs\Piss");
     }
 
     private void Start()

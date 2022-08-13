@@ -2091,6 +2091,11 @@ Transform:
   m_Father: {fileID: 1438040357}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1578983270 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1582150422476935889, guid: 3b845c7b764aa834aa321371de66f102, type: 3}
+  m_PrefabInstance: {fileID: 1582150423235648025}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1613428120
 GameObject:
   m_ObjectHideFlags: 0
@@ -2933,6 +2938,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 705895189, guid: 3b845c7b764aa834aa321371de66f102, type: 3}
+      propertyPath: tr
+      value: 
+      objectReference: {fileID: 1578983270}
     - target: {fileID: 1486895717, guid: 3b845c7b764aa834aa321371de66f102, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.55
@@ -3113,7 +3122,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7608792678792071449, guid: 192184d53bace2a44b17bad42868bd9a, type: 3}
       propertyPath: m_Distance
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7608792678792071449, guid: 192184d53bace2a44b17bad42868bd9a, type: 3}
       propertyPath: m_ConnectedRigidBody
