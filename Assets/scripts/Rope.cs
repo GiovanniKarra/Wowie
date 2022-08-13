@@ -7,15 +7,14 @@ public class Rope : MonoBehaviour
     LineRenderer rope;
     Transform dog;
     Transform playerHand;
-
-    int playerSortingOrder;
+    SpriteRenderer playerSpriteRenderer;
 
     private void Awake()
     {
         rope = GetComponent<LineRenderer>();
         dog = FindObjectOfType<Dog>().transform;
         playerHand = GameObject.Find("Hand").transform;
-        playerSortingOrder = playerHand.GetComponentInParent<SpriteRenderer>().sortingOrder;
+        playerSpriteRenderer = playerHand.GetComponentInParent<SpriteRenderer>();
     }
 
     private void Update()
@@ -23,7 +22,7 @@ public class Rope : MonoBehaviour
         if (dog.position.y < playerHand.position.y)
         {
             rope.sortingLayerName = "Default";
-            rope.sortingOrder = playerSortingOrder + 1;
+            rope.sortingOrder = playerSpriteRenderer.sortingOrder + 1;
         }
         else
         {
