@@ -63,9 +63,9 @@ public class Dog : MonoBehaviour
         }
     }
 
-    void Stop()
+    void Stop(bool forced=false)
     {
-        if ((stopPoint - transform.position).magnitude <= stopRange)
+        if ((stopPoint - transform.position).magnitude <= stopRange || forced)
         {
             rb.velocity = Vector2.zero;
             stopPoint = transform.position;
@@ -113,7 +113,7 @@ public class Dog : MonoBehaviour
     {
         if (!wandering)
         {
-            rb.velocity = Vector2.zero;
+            Stop(true);
             wandering = true;
         }
         if (rb.velocity != Vector2.zero) return;
