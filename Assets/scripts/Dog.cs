@@ -24,6 +24,7 @@ public class Dog : MonoBehaviour
     bool wandering = false;
 
     public float[] interestValues = { 50, 50, 50 }; // piss, horniness, aggro
+    GameObject lastPiss;
 
     private void Awake()
     {
@@ -121,20 +122,31 @@ public class Dog : MonoBehaviour
         //  /!\
         // valeurs placeholder
         //  /!\
-
+        if (interest == null) return;
         if (rb.velocity == Vector2.zero && (interest.transform.position - transform.position).magnitude <= interest.radius)
         {
             interestValues[interest.Type] -= Mathf.Min(10 * Time.deltaTime, interestValues[interest.Type]);
-            if (interest.available)
+
+            switch (interest.type)
             {
-                Instantiate(piss, interest.transform.position, Quaternion.identity);
-                interest.available = false;
+                case TYPE.PISS:
+                    if (lastPiss == null || Vector2.Distance(lastPiss.transform.position, transform.position) > 6)
+                    {
+                        lastPiss = Instantiate(piss, interest.transform.position, Quaternion.identity);
+                    }
+                    break;
+                case TYPE.HORNINESS:
+                    break;
+                case TYPE.AGGRO:
+                    break;
             }
         }
         if (interestValues[interest.Type] <= 0 || (interestValues[interest.Type] <= 70 &&
             (interest.transform.position - transform.position).magnitude > interest.radius))
         {
             mode = MODE.NORMAL;
+            interest.available = false;
+            interest = null;
         }
     }
 
