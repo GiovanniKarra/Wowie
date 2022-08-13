@@ -930,7 +930,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7608792678792071428, guid: 192184d53bace2a44b17bad42868bd9a, type: 3}
       propertyPath: speed
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7608792678792071428, guid: 192184d53bace2a44b17bad42868bd9a, type: 3}
       propertyPath: perceptionRange
