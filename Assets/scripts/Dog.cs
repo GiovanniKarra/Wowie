@@ -185,8 +185,8 @@ public class Dog : MonoBehaviour
                 break;
 
             case MODE.INTEREST:
-                InterestInteract();
                 GoTowards(interest.transform.position, interest.radius, boost);
+                InterestInteract();
                 break;
 
             case MODE.FREE:
