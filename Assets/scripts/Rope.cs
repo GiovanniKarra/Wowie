@@ -6,17 +6,17 @@ public class Rope : MonoBehaviour
 {
     LineRenderer rope;
     Transform dog;
-    Transform player;
+    Transform playerHand;
 
     private void Awake()
     {
         rope = GetComponent<LineRenderer>();
         dog = FindObjectOfType<Dog>().transform;
-        player = FindObjectOfType<PlayerCharacter>().transform;
+        playerHand = GameObject.Find("Hand").transform;
     }
 
     private void Update()
     {
-        rope.SetPosition(0, player.position); rope.SetPosition(1, dog.position);
+        rope.SetPosition(0, playerHand.position); rope.SetPosition(1, dog.position);
     }
 }
