@@ -90,7 +90,7 @@ public class Dog : MonoBehaviour
 
     void InterestDetect()
     {
-        if (mode == MODE.FREE) return;
+        if (mode != MODE.NORMAL) return;
 
         RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, perceptionRange, Vector3.forward, 1, LayerMask.GetMask("Interest"));
 
@@ -130,7 +130,7 @@ public class Dog : MonoBehaviour
             switch (interest.type)
             {
                 case TYPE.PISS:
-                    if (lastPiss == null || Vector2.Distance(lastPiss.transform.position, transform.position) > 6)
+                    if (lastPiss == null || Vector2.Distance(lastPiss.transform.position, transform.position) > 3)
                     {
                         lastPiss = Instantiate(piss, interest.transform.position, Quaternion.identity);
                     }
@@ -185,8 +185,8 @@ public class Dog : MonoBehaviour
                 break;
 
             case MODE.INTEREST:
-                GoTowards(interest.transform.position, interest.radius, boost);
                 InterestInteract();
+                if (interest != null) GoTowards(interest.transform.position, interest.radius, boost);
                 break;
 
             case MODE.FREE:
