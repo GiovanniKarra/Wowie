@@ -29,7 +29,7 @@ public class Dog : MonoBehaviour
         player = FindObjectOfType<PlayerCharacter>();
         rb = GetComponent<Rigidbody2D>();
         dj = GetComponent<DistanceJoint2D>();
-        piss = Resources.Load<GameObject>("Piss");
+        piss = Resources.Load<GameObject>(@"prefabs\Piss");
     }
 
     private void Start()
@@ -105,7 +105,7 @@ public class Dog : MonoBehaviour
         if (interestValues[type] >= 100)
         {
             interest = newInterest;
-            boost = 4.5f;
+            boost = 4f;
             mode = MODE.INTEREST;
         }
     }

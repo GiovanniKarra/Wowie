@@ -6,6 +6,6 @@ public class Piss : MonoBehaviour
 {
     private void Update()
     {
-        transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(1.5f, 0.75f), Time.deltaTime);
+        transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(1.7f, 0.85f), Time.deltaTime * 0.8f);
     }
 }
