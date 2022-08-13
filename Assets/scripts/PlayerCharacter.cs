@@ -29,7 +29,7 @@ public class PlayerCharacter : MonoBehaviour
 
     private void Update()
     {
-        if (interacting && Vector2.Distance(transform.position, dog.transform.position) < 1.5f)
+        if (Vector2.Distance(transform.position, dog.transform.position) < 1f)
         {
             dog.Unfree();
         }
