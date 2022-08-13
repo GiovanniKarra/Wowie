@@ -5,21 +5,22 @@ using UnityEngine;
 public class DogeGFX : MonoBehaviour
 {
     public Animator anim;
-    Rigidbody2D rb;
+    Dog dog;
 
     private void Awake()
     {
         if (anim == null)
             anim = GetComponentInChildren<Animator>();
-        rb = GetComponentInParent<Rigidbody2D>();
+        dog = GetComponentInParent<Dog>();
     }
 
     private void Update()
     {
-        anim.Play(rb.velocity == Vector2.zero ? "Idle" : "Run");
-        if (rb.velocity.x > 0)
+        Vector2 direction = dog.GetDirection();
+        anim.Play(direction == Vector2.zero ? "Idle" : "Run");
+        if (direction.x > 0)
             transform.rotation = Quaternion.Euler(Vector3.up * 180);
-        if (rb.velocity.x < 0)
+        if (direction.x < 0)
             transform.rotation = Quaternion.Euler(Vector3.up * 0);
     }
 }

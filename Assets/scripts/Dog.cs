@@ -11,7 +11,7 @@ public class Dog : MonoBehaviour
     MODE mode;
 
     PlayerCharacter player;
-    Rigidbody2D rb;
+    [HideInInspector] public Rigidbody2D rb;
     DistanceJoint2D dj;
     float ropeRange;
 
@@ -27,9 +27,14 @@ public class Dog : MonoBehaviour
     {
         player = FindObjectOfType<PlayerCharacter>();
         rb = GetComponent<Rigidbody2D>();
-        mode = MODE.NORMAL;
         dj = GetComponent<DistanceJoint2D>();
+    }
+
+    private void Start()
+    {
+        mode = MODE.NORMAL;
         ropeRange = dj.distance;
+        stopPoint = transform.position;
     }
 
     private void FixedUpdate()
