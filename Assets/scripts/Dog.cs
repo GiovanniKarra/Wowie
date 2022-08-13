@@ -104,7 +104,7 @@ public class Dog : MonoBehaviour
         if (interestValues[type] >= 100)
         {
             interest = newInterest.gameObject;
-            boost = 4;
+            boost = 4.5f;
             mode = MODE.INTEREST;
         }
     }

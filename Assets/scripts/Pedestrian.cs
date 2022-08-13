@@ -41,6 +41,8 @@ public class Pedestrian : MonoBehaviour
 
     void Wander(float radius)
     {
+        fell = false;
+
         if (moving) return;
         if (Random.Range(0, 100f) > 2f) return;
 
@@ -67,5 +69,12 @@ public class Pedestrian : MonoBehaviour
 
         Vector2 direction = (targetPos - transform.position).normalized; // si jamais je veux le propulser en avant
         Stop();
+
+        Invoke("Unfall", 4);
+    }
+
+    void Unfall()
+    {
+        fell = false;
     }
 }
