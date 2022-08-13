@@ -18,6 +18,8 @@ public class Dog : MonoBehaviour
     Vector3 stopPoint;
     float stopRange;
 
+    float boost = 1;
+
     private void Awake()
     {
         player = FindObjectOfType<PlayerCharacter>();
@@ -35,7 +37,7 @@ public class Dog : MonoBehaviour
 
     private void Update()
     {
-        Detect();
+        DetectInterest();
         RopeDetect();
     }
 
@@ -67,13 +69,14 @@ public class Dog : MonoBehaviour
         stopRange = radius;
     }
 
-    void Detect()
+    void DetectInterest()
     {
         RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, perceptionRange, Vector3.forward, 1, LayerMask.GetMask("Interest"));
 
-        if (hits.Length != 0)
+        if (hits.Length != 0 && mode != MODE.INTEREST)
         {
             interest = hits[0].collider.gameObject;
+            boost = 4;
             mode = MODE.INTEREST;
         }
     }
@@ -81,14 +84,14 @@ public class Dog : MonoBehaviour
     void Wander(Vector2 center, float radius)
     {
         if (rb.velocity != Vector2.zero) return;
-        if (Random.Range(0, 100f) > 2) return;
+        if (Random.Range(0, 100f) > 1.8f) return;
 
         float randX = Random.Range(center.x - radius, center.x + radius);
         float randY =
             Random.Range(-Mathf.Sin(Mathf.Acos((randX-center.x)/radius))*radius+center.y, Mathf.Sin(Mathf.Acos((randX-center.x)/radius))*radius+center.y);
         Vector2 RandPos = new Vector2(randX, randY);
 
-        GoTowards(RandPos, 0.05f, 0.75f);
+        GoTowards(RandPos, 0.05f, 0.65f);
 
         stopPoint = RandPos;
         stopRange = 0.05f;
@@ -103,7 +106,8 @@ public class Dog : MonoBehaviour
                 else Wander(player.transform.position, 2.5f);
                 break;
             case MODE.INTEREST:
-                GoTowards(interest.transform.position, 1.5f, 2);
+                GoTowards(interest.transform.position, 1.5f, boost);
+                boost = Mathf.Lerp(boost, 1, Time.deltaTime);
                 break;
         }
     }
