@@ -19,6 +19,7 @@ public class Dog : MonoBehaviour
     float stopRange;
 
     float boost = 1;
+    bool wandering = false;
 
     float[] interestValues = { 50, 50, 50 }; // piss, horniness, aggro
 
@@ -33,6 +34,8 @@ public class Dog : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (player.rb.velocity != Vector2.zero) wandering = false;
+        boost = Mathf.Lerp(boost, 1, Time.deltaTime);
         Move();
         Stop();
     }
@@ -101,6 +104,11 @@ public class Dog : MonoBehaviour
 
     void Wander(Vector2 center, float radius)
     {
+        if (!wandering)
+        {
+            rb.velocity = Vector2.zero;
+            wandering = true;
+        }
         if (rb.velocity != Vector2.zero) return;
         if (Random.Range(0, 100f) > 1.8f) return;
 
@@ -121,12 +129,15 @@ public class Dog : MonoBehaviour
         switch (mode)
         {
             case MODE.NORMAL:
-                if (player.rb.velocity != Vector2.zero) GoTowards(player.transform.position, 2);
+                if (player.rb.velocity != Vector2.zero)
+                {
+                    boost = 2.5f;
+                    GoTowards((Vector2)player.transform.position + player.rb.velocity.normalized * 5, 0.01f, boost);
+                }
                 else Wander(player.transform.position, 2.5f);
                 break;
             case MODE.INTEREST:
                 GoTowards(interest.transform.position, 1.5f, boost);
-                boost = Mathf.Lerp(boost, 1, Time.deltaTime);
                 break;
         }
     }
