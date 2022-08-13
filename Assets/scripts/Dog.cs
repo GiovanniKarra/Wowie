@@ -14,6 +14,7 @@ public class Dog : MonoBehaviour
     [HideInInspector] public Rigidbody2D rb;
     DistanceJoint2D dj;
     float ropeRange;
+    GameObject piss;
 
     Vector3 stopPoint;
     float stopRange;
@@ -28,6 +29,7 @@ public class Dog : MonoBehaviour
         player = FindObjectOfType<PlayerCharacter>();
         rb = GetComponent<Rigidbody2D>();
         dj = GetComponent<DistanceJoint2D>();
+        piss = Resources.Load<GameObject>("Piss");
     }
 
     private void Start()
@@ -90,6 +92,7 @@ public class Dog : MonoBehaviour
             foreach (RaycastHit2D hit in hits)
             {
                 InterestPoint interestPoint = hit.collider.GetComponent<InterestPoint>();
+                if (!interestPoint.available) continue;
                 NewInterest(interestPoint, interestPoint.Type);
             }
         }
@@ -116,7 +119,11 @@ public class Dog : MonoBehaviour
         if (rb.velocity == Vector2.zero && (interest.transform.position - transform.position).magnitude <= interest.radius)
         {
             interestValues[interest.Type] -= Mathf.Min(10 * Time.deltaTime, interestValues[interest.Type]);
-            print("he he he");
+            if (interest.available)
+            {
+                Instantiate(piss, interest.transform.position, Quaternion.identity);
+                interest.available = false;
+            }
         }
         if (interestValues[interest.Type] <= 0 || (interestValues[interest.Type] <= 70 &&
             (interest.transform.position - transform.position).magnitude > interest.radius))
@@ -156,11 +163,16 @@ public class Dog : MonoBehaviour
                 {
                     GoTowards(player.transform.position, 2);
                 }
-                else Wander(player.transform.position, 2.5f);
+                else Wander(player.transform.position, ropeRange);
                 break;
+
             case MODE.INTEREST:
                 InterestInteract();
                 GoTowards(interest.transform.position, interest.radius, boost);
+                break;
+
+            case MODE.FREE:
+
                 break;
         }
     }
@@ -179,6 +191,7 @@ public class Dog : MonoBehaviour
     enum MODE
     {
         NORMAL,
-        INTEREST
+        INTEREST,
+        FREE
     }
 }
