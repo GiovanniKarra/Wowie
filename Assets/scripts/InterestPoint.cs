@@ -10,6 +10,6 @@ public class InterestPoint : MonoBehaviour
 public enum TYPE
 {
     PISS,
-    HORN,
+    HORNINESS,
     AGGRO
 }

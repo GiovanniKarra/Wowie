@@ -20,6 +20,10 @@ public class Dog : MonoBehaviour
 
     float boost = 1;
 
+    float aggro = 50;
+    float piss = 50;
+    float horniness = 50;
+
     private void Awake()
     {
         player = FindObjectOfType<PlayerCharacter>();
