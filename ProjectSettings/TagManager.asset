@@ -38,6 +38,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BG
+    uniqueID: 2155805571
+    locked: 0
+  - name: Under
+    uniqueID: 3809045361
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Over
+    uniqueID: 1830396925
+    locked: 0
+  - name: FG
+    uniqueID: 1782115627
+    locked: 0
+  - name: HUD
+    uniqueID: 3125095061
     locked: 0
