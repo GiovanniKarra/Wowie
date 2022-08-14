@@ -90,6 +90,9 @@ public class Pedestrian : MonoBehaviour
             Mathf.Sin(Mathf.Acos((randX - center.x) / radius)) * radius + center.y);
         Vector2 RandPos = new Vector2(randX, randY);
 
+        Vector2 direction = RandPos - (Vector2)transform.position;
+
+
         GoTowards(RandPos, 0.5f);
     }
 
