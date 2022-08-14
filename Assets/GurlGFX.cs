@@ -13,6 +13,12 @@ public class GurlGFX : RbGFX
     {
         anim.runtimeAnimatorController = player.dog.mode == MODE.FREE ? unleashed : leash;
 
+        if (player != null && player.stun)
+        {
+            anim.Play("Down");
+            return;
+        }
+
         base.Update();
     }
 }

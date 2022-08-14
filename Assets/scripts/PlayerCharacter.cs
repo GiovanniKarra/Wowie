@@ -15,7 +15,7 @@ public class PlayerCharacter : MonoBehaviour
 
     [HideInInspector]
     public Dog dog;
-    bool stun;
+    public bool stun;
     float unstunTime;
 
     private void Awake()
