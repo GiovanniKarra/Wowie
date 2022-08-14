@@ -15,6 +15,7 @@ public class Dog : MonoBehaviour
     DistanceJoint2D dj;
     float ropeRange;
     GameObject piss;
+    GameObject poop;
     Rope rope;
 
     Vector3 stopPoint;
@@ -23,8 +24,9 @@ public class Dog : MonoBehaviour
     float boost = 1;
     bool wandering = false;
 
-    public float[] interestValues = { 50, 50, 50 }; // piss, horniness, aggro
+    public float[] interestValues = { 50, 50, 50, 0 }; // piss, poop, aggro, horniness
     GameObject lastPiss;
+    GameObject lastPoop;
 
     private void Awake()
     {
@@ -32,6 +34,7 @@ public class Dog : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         dj = GetComponent<DistanceJoint2D>();
         piss = Resources.Load<GameObject>(@"prefabs\Piss");
+        poop = Resources.Load<GameObject>(@"prefabs\Poop");
         rope = FindObjectOfType<Rope>();
     }
 
@@ -135,7 +138,11 @@ public class Dog : MonoBehaviour
                         lastPiss = Instantiate(piss, interest.transform.position, Quaternion.identity);
                     }
                     break;
-                case TYPE.HORNINESS:
+                case TYPE.POOP:
+                    if (lastPoop == null || Vector2.Distance(lastPoop.transform.position, transform.position) > 3)
+                    {
+                        lastPoop = Instantiate(poop, interest.transform.position, Quaternion.identity);
+                    }
                     break;
                 case TYPE.AGGRO:
                     break;
