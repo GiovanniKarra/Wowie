@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 1443525408241870125}
   - component: {fileID: 8481455299406720938}
   - component: {fileID: 3231152096206023564}
+  - component: {fileID: 3843797580776177609}
   m_Layer: 0
   m_Name: Arbre
   m_TagString: Untagged
@@ -208,3 +209,19 @@ MonoBehaviour:
   tr: {fileID: 7146948919547848892}
   offset: 0
   justNullifySorting: 0
+--- !u!70 &3843797580776177609
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2292994921593893491}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.1, y: 0.49}
+  m_Size: {x: 2.4, y: 1}
+  m_Direction: 1
