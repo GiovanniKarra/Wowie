@@ -800,6 +800,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3243363734633737499, guid: 25000ce2ec332a7448da61a650122792, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4447136698392048257, guid: 25000ce2ec332a7448da61a650122792, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -847,6 +851,10 @@ PrefabInstance:
     - target: {fileID: 4447136698392048263, guid: 25000ce2ec332a7448da61a650122792, type: 3}
       propertyPath: m_Name
       value: Car
+      objectReference: {fileID: 0}
+    - target: {fileID: 4447136698392048268, guid: 25000ce2ec332a7448da61a650122792, type: 3}
+      propertyPath: speed
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25000ce2ec332a7448da61a650122792, type: 3}

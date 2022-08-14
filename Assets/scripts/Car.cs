@@ -18,17 +18,15 @@ public class Car : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < points.Length; i++)
-        {
-            points[i] = transform.GetChild(i);
-        }
+        for (int i = 1; i <= points.Length; i++) points[i-1] = transform.GetChild(i);
+        for (int i = 0; i < points.Length; i++) points[i].parent = null;
 
         target = points[index].position;
     }
 
     private void FixedUpdate()
     {
-        if (Vector2.Distance(target, transform.position) < 0.05f)
+        if (Vector2.Distance(target, transform.position) < 0.2f)
         {
             index += 1;
             index %= points.Length;
