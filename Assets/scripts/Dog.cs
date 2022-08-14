@@ -7,7 +7,7 @@ public class Dog : MonoBehaviour
     public float speed;
     public float perceptionRange;
 
-    InterestPoint interest;
+    public InterestPoint interest;
     MODE mode;
 
     PlayerCharacter player;

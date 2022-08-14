@@ -42,13 +42,27 @@ public class SpeechBubbles : MonoBehaviour
             }
         }
 
-        spr1.sprite = sprites[(int)rankedTypes[0]];
-        spr2.sprite = sprites[(int)rankedTypes[1]];
-        spr3.sprite = sprites[(int)rankedTypes[2]];
+        if (dog.interest == null)
+        {
+            spr1.sprite = null;
+            spr2.sprite = sprites[(int)rankedTypes[0]];
+            spr3.sprite = sprites[(int)rankedTypes[1]];
 
-        sr1.transform.localScale = Vector2.one * dog.interestValues[(int)rankedTypes[0]] / 100f;
-        sr2.transform.localScale = Vector2.one * dog.interestValues[(int)rankedTypes[1]] / 100f;
-        sr3.transform.localScale = Vector2.one * dog.interestValues[(int)rankedTypes[2]] / 100f;
+            sr1.transform.localScale = Vector2.zero;
+            sr2.transform.localScale = Vector2.one * dog.interestValues[(int)rankedTypes[0]] / 100f;
+            sr3.transform.localScale = Vector2.one * dog.interestValues[(int)rankedTypes[1]] / 100f;
+        }
+        else
+        {
+            rankedTypes.Remove(dog.interest.type);
 
+            spr1.sprite = sprites[dog.interest.Type];
+            spr2.sprite = sprites[(int)rankedTypes[0]];
+            spr3.sprite = sprites[(int)rankedTypes[1]];
+
+            sr1.transform.localScale = Vector2.one * dog.interestValues[dog.interest.Type] / 100f;
+            sr2.transform.localScale = Vector2.one * dog.interestValues[(int)rankedTypes[0]] / 100f;
+            sr3.transform.localScale = Vector2.one * dog.interestValues[(int)rankedTypes[1]] / 100f;
+        }
     }
 }
