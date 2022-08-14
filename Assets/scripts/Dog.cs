@@ -23,6 +23,7 @@ public class Dog : MonoBehaviour
 
     float boost = 1;
     bool wandering = false;
+    bool interacting = false;
 
     public float[] interestValues = { 50, 50, 50, 0 }; // piss, poop, aggro, horniness
     GameObject lastPiss;
@@ -118,6 +119,7 @@ public class Dog : MonoBehaviour
         if (rb.velocity == Vector2.zero && (interest.transform.position - transform.position).magnitude <= interest.radius)
         {
             interestValues[interest.Type] -= Mathf.Min(interest.valueLoss * Time.deltaTime, interestValues[interest.Type]);
+            interacting = true;
 
             switch (interest.type)
             {
@@ -145,11 +147,13 @@ public class Dog : MonoBehaviour
         {
             mode = MODE.NORMAL;
             interest.available = false;
+            interacting = false;
             interest = null;
         }
-        else if ((interest.transform.position - transform.position).magnitude > interest.radius * 2f)
+        else if (interacting && (interest.transform.position - transform.position).magnitude > interest.radius * 2f)
         {
             mode = MODE.NORMAL;
+            interacting = false;
             interest = null;
         }
     }
