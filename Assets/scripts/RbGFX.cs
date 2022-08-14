@@ -21,6 +21,7 @@ public class RbGFX : MonoBehaviour
         if (pd != null && pd.fell)
         {
             anim.Play("Down");
+            transform.rotation = Quaternion.Euler(0, transform.rotation.y + 180, 0);
             return;
         }
 
