@@ -221,7 +221,7 @@ public class Dog : MonoBehaviour
             case MODE.FREE:
                 if (Vector2.Dot(player.rb.velocity.normalized, (transform.position - player.transform.position).normalized) > 0.7f)
                     GoTowards((Vector2)transform.position + player.rb.velocity * 20, 0.05f);
-                else Wander(player.transform.position, ropeRange * 5, 1.5f);
+                else Wander(player.transform.position, 10, 1.5f);
                 break;
         }
     }
