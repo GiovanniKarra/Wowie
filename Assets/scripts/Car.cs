@@ -36,4 +36,10 @@ public class Car : MonoBehaviour
         Vector2 direction = (target - transform.position).normalized;
         rb.velocity = direction * speed;
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.TryGetComponent(out PlayerCharacter player)) player.Fall();
+        else if (other.TryGetComponent(out Dog dog)) dog.Free();
+    }
 }
