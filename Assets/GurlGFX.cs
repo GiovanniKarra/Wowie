@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class GurlGFX : RbGFX
 {
     public PlayerCharacter player;
-    public AnimatorController leash;
-    public AnimatorController unleashed;
+    public RuntimeAnimatorController leash;
+    public RuntimeAnimatorController unleashed;
 
     protected override void Update()
     {
