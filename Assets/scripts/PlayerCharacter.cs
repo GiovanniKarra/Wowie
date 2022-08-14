@@ -40,6 +40,7 @@ public class PlayerCharacter : MonoBehaviour
     public void Fall()
     {
         dog.Free();
+        rb.velocity = Vector2.zero;
         stun = true;
         unstunTime = Time.time + 2;
     }
