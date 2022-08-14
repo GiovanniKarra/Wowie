@@ -10,9 +10,19 @@ public class InterestPoint : MonoBehaviour
     public float radius;
     [HideInInspector] public bool available;
 
+    new CircleCollider2D collider;
+
     private void Awake()
     {
         available = true;
+        collider = GetComponent<CircleCollider2D>();
+        collider.radius = 0.75f * radius;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }
 

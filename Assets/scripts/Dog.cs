@@ -140,9 +140,9 @@ public class Dog : MonoBehaviour
                     }
                     break;
                 case TYPE.POOP:
-                    if (lastPoop == null || Vector2.Distance(lastPoop.transform.position, transform.position) > 3)
+                    if (lastPoop == null || Vector2.Distance(lastPoop.transform.position, transform.position) > 10)
                     {
-                        lastPoop = Instantiate(poop, interest.transform.position, Quaternion.identity);
+                        lastPoop = Instantiate(poop, transform.position, Quaternion.identity);
                     }
                     break;
                 case TYPE.AGGRO:
