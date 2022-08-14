@@ -127,7 +127,6 @@ public class Dog : MonoBehaviour
             bagarreGFX.SetActive(false);
         }
         interest.gameObject.SetActive(true);
-        bagarreGFX.SetActive(false);
         if (rb.velocity == Vector2.zero && (interest.transform.position - transform.position).magnitude <= interest.radius)
         {
             interestValues[interest.Type] -= Mathf.Min(interest.valueLoss * Time.deltaTime, interestValues[interest.Type]);
@@ -154,6 +153,10 @@ public class Dog : MonoBehaviour
                     interest.gameObject.SetActive(false);
                     break;
             }
+        }
+        else
+        {
+            bagarreGFX.SetActive(false);
         }
         if (interestValues[interest.Type] <= 0 || (interestValues[interest.Type] <= 70 &&
             (interest.transform.position - transform.position).magnitude > interest.radius * 1.2f))
