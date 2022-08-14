@@ -65,8 +65,8 @@ public class Dog : MonoBehaviour
         if (mode == MODE.FREE) return;
 
         RaycastHit2D hit =
-            Physics2D.Raycast(transform.position*0.9f + player.transform.position*0.1f,
-            player.transform.position - transform.position, ropeRange*0.8f, LayerMask.GetMask("Walker"));
+            Physics2D.Raycast(transform.position*0.8f + player.transform.position*0.2f,
+            player.transform.position - transform.position, ropeRange*0.6f, LayerMask.GetMask("Walker"));
 
         if (hit.collider != null)
         {
