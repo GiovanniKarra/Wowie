@@ -19,7 +19,8 @@ public class InterestPoint : MonoBehaviour
 public enum TYPE
 {
     PISS,
-    HORNINESS,
+    POOP,
     AGGRO,
+    HORNINESS,
     MAX
 }
