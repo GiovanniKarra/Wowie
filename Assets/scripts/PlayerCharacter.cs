@@ -40,6 +40,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void Fall()
     {
+        CamShake.Shake(0.3f, 0.5f, 5);
         dog.Free();
         rb.velocity = Vector2.zero;
         stun = true;
