@@ -1193,7 +1193,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1720761630576505541, guid: ce2221b82806c1c4a91059aaa489aa19, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Purpeline
       objectReference: {fileID: 0}
     - target: {fileID: 1720761630576505543, guid: ce2221b82806c1c4a91059aaa489aa19, type: 3}
       propertyPath: m_RootOrder
