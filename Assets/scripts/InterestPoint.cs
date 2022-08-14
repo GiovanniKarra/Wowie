@@ -11,13 +11,13 @@ public class InterestPoint : MonoBehaviour
     public float radius;
     [HideInInspector] public bool available;
 
-    new CircleCollider2D collider;
+    CircleCollider2D collider_;
 
     private void Awake()
     {
         available = true;
-        collider = GetComponent<CircleCollider2D>();
-        collider.radius = 0.75f * radius;
+        collider_ = GetComponent<CircleCollider2D>();
+        collider_.radius = 0.75f * radius;
     }
 
     private void OnDrawGizmosSelected()
