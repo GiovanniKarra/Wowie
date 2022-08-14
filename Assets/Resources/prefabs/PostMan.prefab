@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 495273990457883453}
   - component: {fileID: 495273990457883440}
   - component: {fileID: 495273990457883441}
+  - component: {fileID: 1175969656}
   m_Layer: 7
   m_Name: PostMan
   m_TagString: Untagged
@@ -85,6 +86,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1175969656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495273990457883442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97a0a1b52b59d184c838f61a8ceb667c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  value: 10
+  valueLoss: 10
+  radius: 1
+  available: 0
 --- !u!1 &2502274307001323039
 GameObject:
   m_ObjectHideFlags: 0

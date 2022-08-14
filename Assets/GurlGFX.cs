@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class GurlGFX : RbGFX
 {
     public PlayerCharacter player;
-    public Animator leash;
-    public Animator unleashed;
+    public AnimatorController leash;
+    public AnimatorController unleashed;
 
     protected override void Update()
     {
-        
+        anim.runtimeAnimatorController = player.dog.mode == MODE.FREE ? unleashed : leash;
 
         base.Update();
     }
