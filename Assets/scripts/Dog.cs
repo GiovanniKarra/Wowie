@@ -232,7 +232,7 @@ public class Dog : MonoBehaviour
         dj.distance = ropeRange * 10;
         rope.gameObject.SetActive(false);
         bagarreGFX.SetActive(false);
-        interest.gameObject.SetActive(true);
+        if (interest != null )interest.gameObject.SetActive(true);
         interacting = false;
         interest = null;
     }
