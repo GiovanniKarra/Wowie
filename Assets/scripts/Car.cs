@@ -4,5 +4,11 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-    
+    Transform[] points;
+    public float speed;
+
+    private void Awake()
+    {
+        
+    }
 }
