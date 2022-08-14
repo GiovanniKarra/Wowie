@@ -48,7 +48,7 @@ public class SpeechBubbles : MonoBehaviour
             spr2.sprite = sprites[(int)rankedTypes[0]];
             spr3.sprite = sprites[(int)rankedTypes[1]];
 
-            sr1.transform.localScale = Vector2.zero;
+            sr1.gameObject.SetActive(false);
             sr2.transform.localScale = Vector2.one * dog.interestValues[(int)rankedTypes[0]] / 100f;
             sr3.transform.localScale = Vector2.one * dog.interestValues[(int)rankedTypes[1]] / 100f;
         }
@@ -56,11 +56,13 @@ public class SpeechBubbles : MonoBehaviour
         {
             rankedTypes.Remove(dog.interest.type);
 
+            sr1.gameObject.SetActive(true);
+
             spr1.sprite = sprites[dog.interest.Type];
             spr2.sprite = sprites[(int)rankedTypes[0]];
             spr3.sprite = sprites[(int)rankedTypes[1]];
 
-            sr1.transform.localScale = Vector2.one * dog.interestValues[dog.interest.Type] / 100f;
+            sr1.transform.localScale = Vector2.one * 2 * dog.interestValues[dog.interest.Type] / 100f;
             sr2.transform.localScale = Vector2.one * dog.interestValues[(int)rankedTypes[0]] / 100f;
             sr3.transform.localScale = Vector2.one * dog.interestValues[(int)rankedTypes[1]] / 100f;
         }
