@@ -815,8 +815,8 @@ MonoBehaviour:
   objectives:
   - objective: 0
     completed: 0
-    text: chie sur la pelouse du voisin
-    secret: 1
+    text: "Faire tr\xE9bucher un dude"
+    secret: 0
 --- !u!1 &1939998255
 GameObject:
   m_ObjectHideFlags: 0

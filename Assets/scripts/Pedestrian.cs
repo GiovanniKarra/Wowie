@@ -89,6 +89,8 @@ public class Pedestrian : MonoBehaviour
 
     public void Fall()
     {
+        ObjectiveMan.inst.Trigger(OBJECTIVE.TREBUCHER);
+
         fell = true;
 
         Vector2 direction = (targetPos - transform.position).normalized; // si jamais je veux le propulser en avant
