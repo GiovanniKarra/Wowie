@@ -129,7 +129,7 @@ public class Dog : MonoBehaviour
         if (interest == null) return;
         if (rb.velocity == Vector2.zero && (interest.transform.position - transform.position).magnitude <= interest.radius)
         {
-            interestValues[interest.Type] -= Mathf.Min(10 * Time.deltaTime, interestValues[interest.Type]);
+            interestValues[interest.Type] -= Mathf.Min(interest.valueLoss * Time.deltaTime, interestValues[interest.Type]);
 
             switch (interest.type)
             {
@@ -140,7 +140,8 @@ public class Dog : MonoBehaviour
                     }
                     break;
                 case TYPE.POOP:
-                    if (lastPoop == null || Vector2.Distance(lastPoop.transform.position, transform.position) > 10)
+                    if ((lastPoop == null || Vector2.Distance(lastPoop.transform.position, transform.position) > 10)
+                        && interestValues[interest.Type] <= 0)
                     {
                         lastPoop = Instantiate(poop, transform.position, Quaternion.identity);
                     }
@@ -150,7 +151,7 @@ public class Dog : MonoBehaviour
             }
         }
         if (interestValues[interest.Type] <= 0 || (interestValues[interest.Type] <= 70 &&
-            (interest.transform.position - transform.position).magnitude > interest.radius))
+            (interest.transform.position - transform.position).magnitude > interest.radius * 1.2f))
         {
             mode = MODE.NORMAL;
             interest.available = false;

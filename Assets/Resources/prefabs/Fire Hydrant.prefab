@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   value: 10
+  valueLoss: 10
   radius: 1
   available: 0
 --- !u!58 &1582150422476935891
