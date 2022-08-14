@@ -29,6 +29,9 @@ public class Dog : MonoBehaviour
     GameObject lastPiss;
     GameObject lastPoop;
 
+    [Space]
+    public GameObject bagarreGFX;
+
     private void Awake()
     {
         player = FindObjectOfType<PlayerCharacter>();
@@ -114,7 +117,15 @@ public class Dog : MonoBehaviour
         //  /!\
         // valeurs placeholder
         //  /!\
-        if (interest == null) return;
+        if (interest == null)
+        {
+            bagarreGFX.SetActive(false);
+            return;
+        }
+        if (interest.type != TYPE.AGGRO)
+        {
+            bagarreGFX.SetActive(false);
+        }
         interest.gameObject.SetActive(true);
         if (rb.velocity == Vector2.zero && (interest.transform.position - transform.position).magnitude <= interest.radius)
         {
@@ -138,7 +149,7 @@ public class Dog : MonoBehaviour
                     }
                     break;
                 case TYPE.AGGRO:
-                    // animation bagarre
+                    bagarreGFX.SetActive(true);
                     interest.gameObject.SetActive(false);
                     break;
             }
