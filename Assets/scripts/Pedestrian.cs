@@ -11,7 +11,7 @@ public class Pedestrian : MonoBehaviour
     bool moving = false;
     Vector3 targetPos;
 
-    bool fell = false;
+    public bool fell = false;
 
     MOOD mood;
     [HideInInspector] public Vector2 direction;

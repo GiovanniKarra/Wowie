@@ -6,16 +6,24 @@ public class RbGFX : MonoBehaviour
 {
     public Animator anim;
     Rigidbody2D rb;
+    Pedestrian pd;
 
     private void Awake()
     {
         if (anim == null)
             anim = GetComponentInChildren<Animator>();
         rb = GetComponentInParent<Rigidbody2D>();
+        pd= GetComponentInParent<Pedestrian>();
     }
 
     protected virtual void Update()
     {
+        if (pd != null && pd.fell)
+        {
+            anim.Play("Down");
+            return;
+        }
+
         Vector2 direction = rb.velocity;
         anim.Play(direction == Vector2.zero ? "Idle" : "Run");
         if (direction.x > 0.3f)
