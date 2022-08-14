@@ -216,7 +216,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7784201, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1395,14 +1395,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3255832027019218785, guid: 192184d53bace2a44b17bad42868bd9a, type: 3}
-      propertyPath: sprites.Array.data[2]
-      value: 
-      objectReference: {fileID: 21300000, guid: 417e72aa8b89d954591d8e08805aec12, type: 3}
-    - target: {fileID: 4744542110425701304, guid: 192184d53bace2a44b17bad42868bd9a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7608792678792071427, guid: 192184d53bace2a44b17bad42868bd9a, type: 3}
       propertyPath: m_Name
       value: Dog
@@ -1450,10 +1442,6 @@ PrefabInstance:
     - target: {fileID: 7608792678792071430, guid: 192184d53bace2a44b17bad42868bd9a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7608792678792071449, guid: 192184d53bace2a44b17bad42868bd9a, type: 3}
-      propertyPath: m_Distance
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7608792678792071449, guid: 192184d53bace2a44b17bad42868bd9a, type: 3}
       propertyPath: m_ConnectedRigidBody

@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 8481455299406720938}
   - component: {fileID: 3231152096206023564}
   - component: {fileID: 3843797580776177609}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arbre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
