@@ -107,6 +107,8 @@ public class Pedestrian : MonoBehaviour
 
     public void Fall()
     {
+        if (fell) return;
+
         ObjectiveMan.inst.Trigger(OBJECTIVE.TREBUCHER);
 
         fell = true;
