@@ -27,7 +27,7 @@ public class SpeechBubbles : MonoBehaviour
         List<TYPE> rankedTypes = new List<TYPE>();
         List<float> scores = new List<float>();
 
-        for (int i = 0; i < (int)TYPE.MAX; i++)
+        for (int i = 0; i < (int)TYPE.MAX-1; i++)
         {
             float score = dog.interestValues[i];
 
