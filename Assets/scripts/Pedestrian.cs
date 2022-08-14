@@ -93,7 +93,7 @@ public class Pedestrian : MonoBehaviour
         Vector2 direction = RandPos - (Vector2)transform.position;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction.normalized, direction.magnitude, LayerMask.GetMask("Obstacles"));
 
-        if (hit) { RandPos = hit.point - direction.normalized * 1.5f; print(hit.point);  }
+        if (hit) RandPos = hit.point - direction.normalized * 1.5f;
 
         GoTowards(RandPos, 0.5f);
     }
