@@ -157,18 +157,18 @@ public class Dog : MonoBehaviour
         if (interestValues[interest.Type] <= 0 || (interestValues[interest.Type] <= 70 &&
             (interest.transform.position - transform.position).magnitude > interest.radius * 1.2f))
         {
+            mode = MODE.NORMAL;
             bagarreGFX.SetActive(false);
             interest.gameObject.SetActive(true);
-            mode = MODE.NORMAL;
             interest.available = false;
             interacting = false;
             interest = null;
         }
         else if (interacting && (interest.transform.position - transform.position).magnitude > interest.radius * 2f)
         {
+            mode = MODE.NORMAL;
             bagarreGFX.SetActive(false);
             interest.gameObject.SetActive(true);
-            mode = MODE.NORMAL;
             interacting = false;
             interest = null;
         }
@@ -226,6 +226,10 @@ public class Dog : MonoBehaviour
         mode = MODE.FREE;
         dj.distance = ropeRange * 10;
         rope.gameObject.SetActive(false);
+        bagarreGFX.SetActive(false);
+        interest.gameObject.SetActive(true);
+        interacting = false;
+        interest = null;
     }
 
     public void Unfree()

@@ -46,7 +46,7 @@ public class Pedestrian : MonoBehaviour
             switch (mood)
             {
                 case MOOD.WANDER:
-                    if (moving && (transform.position - targetPos).magnitude < 0.05f)
+                    if (moving && (transform.position - targetPos).magnitude < 0.5f)
                     {
                         rb.velocity = Vector2.zero;
                         moving = false;
@@ -91,7 +91,9 @@ public class Pedestrian : MonoBehaviour
         Vector2 RandPos = new Vector2(randX, randY);
 
         Vector2 direction = RandPos - (Vector2)transform.position;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction.normalized, direction.magnitude, LayerMask.GetMask("Obstacles"));
 
+        if (hit) { RandPos = hit.point - direction.normalized * 1.5f; print(hit.point);  }
 
         GoTowards(RandPos, 0.5f);
     }
