@@ -18,9 +18,9 @@ public class RbGFX : MonoBehaviour
     {
         Vector2 direction = rb.velocity;
         anim.Play(direction == Vector2.zero ? "Idle" : "Run");
-        if (direction.x > 0)
+        if (direction.x > 0.3f)
             transform.rotation = Quaternion.Euler(Vector3.up * 180);
-        if (direction.x < 0)
+        if (direction.x < -0.3f)
             transform.rotation = Quaternion.Euler(Vector3.up * 0);
     }
 }
