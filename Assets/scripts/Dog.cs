@@ -120,7 +120,6 @@ public class Dog : MonoBehaviour
         if (interest == null)
         {
             bagarreGFX.SetActive(false);
-            interest.gameObject.SetActive(true);
             return;
         }
         if (interest.type != TYPE.AGGRO)
@@ -159,6 +158,7 @@ public class Dog : MonoBehaviour
             (interest.transform.position - transform.position).magnitude > interest.radius * 1.2f))
         {
             bagarreGFX.SetActive(false);
+            interest.gameObject.SetActive(true);
             mode = MODE.NORMAL;
             interest.available = false;
             interacting = false;
@@ -167,6 +167,7 @@ public class Dog : MonoBehaviour
         else if (interacting && (interest.transform.position - transform.position).magnitude > interest.radius * 2f)
         {
             bagarreGFX.SetActive(false);
+            interest.gameObject.SetActive(true);
             mode = MODE.NORMAL;
             interacting = false;
             interest = null;
