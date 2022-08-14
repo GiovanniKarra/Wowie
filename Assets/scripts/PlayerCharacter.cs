@@ -41,13 +41,14 @@ public class PlayerCharacter : MonoBehaviour
     {
         dog.Free();
         stun = true;
+        unstunTime = Time.time + 2;
     }
 
     void Move()
     {
         if (stun)
         {
-            if (unstunTime <= Time.deltaTime) stun = false;
+            if (unstunTime <= Time.time) stun = false;
             else return;
         }
         rb.velocity = inputs.normalized * speed;
