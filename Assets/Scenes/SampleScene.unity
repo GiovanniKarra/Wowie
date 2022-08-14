@@ -216,7 +216,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7784201, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -851,10 +851,6 @@ PrefabInstance:
     - target: {fileID: 4447136698392048263, guid: 25000ce2ec332a7448da61a650122792, type: 3}
       propertyPath: m_Name
       value: Car
-      objectReference: {fileID: 0}
-    - target: {fileID: 4447136698392048268, guid: 25000ce2ec332a7448da61a650122792, type: 3}
-      propertyPath: speed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25000ce2ec332a7448da61a650122792, type: 3}
