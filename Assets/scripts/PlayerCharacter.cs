@@ -13,7 +13,8 @@ public class PlayerCharacter : MonoBehaviour
 
     public float speed;
 
-    Dog dog;
+    [HideInInspector]
+    public Dog dog;
     bool stun;
     float unstunTime;
 
