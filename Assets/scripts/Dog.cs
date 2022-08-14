@@ -57,21 +57,6 @@ public class Dog : MonoBehaviour
     private void Update()
     {
         InterestDetect();
-        RopeDetect();
-    }
-
-    void RopeDetect()
-    {
-        if (mode == MODE.FREE) return;
-
-        RaycastHit2D hit =
-            Physics2D.Raycast(transform.position*0.8f + player.transform.position*0.2f,
-            player.transform.position - transform.position, ropeRange*0.6f, LayerMask.GetMask("Walker"));
-
-        if (hit.collider != null)
-        {
-            hit.collider.GetComponent<Pedestrian>().Fall();
-        }
     }
 
     void Stop(bool forced=false)

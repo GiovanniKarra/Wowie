@@ -29,5 +29,30 @@ public class Rope : MonoBehaviour
             rope.sortingLayerName = "Under";
         }
         rope.SetPosition(0, playerHand.position); rope.SetPosition(1, dog.position);
+        RopeDetect();
     }
+
+    void RopeDetect()
+    {
+        Vector2 direction = playerHand.transform.position - dog.transform.position;
+        float distance = direction.magnitude;
+
+        RaycastHit2D hit =
+            Physics2D.Raycast((Vector2)dog.transform.position + direction * 0.2f,
+            direction.normalized, distance * 0.6f, LayerMask.GetMask("Walker"));
+
+        if (hit.collider != null)
+        {
+            hit.collider.GetComponent<Pedestrian>().Fall();
+        }
+    }
+
+    //private void OnDrawGizmos()
+    //{
+    //    Vector2 direction = playerHand.transform.position - dog.transform.position;
+    //    float distance = direction.magnitude;
+    //    Gizmos.color = Color.blue;
+    //    Gizmos.DrawLine((Vector2)dog.transform.position + direction * 0.2f,
+    //        (Vector2)dog.transform.position + direction * 0.2f + direction.normalized * distance * 0.6f);
+    //}
 }
