@@ -14,20 +14,33 @@ public class Pedestrian : MonoBehaviour
     bool fell = false;
 
     MOOD mood;
+    [HideInInspector] public Vector2 direction;
+    Queue<Vector2> posQueue;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         player = FindObjectOfType<PlayerCharacter>();
+        posQueue = new Queue<Vector2>();
     }
 
     private void Start()
     {
         mood = MOOD.WANDER;
+
+        for (int i = 0; i < 5; i++)
+        {
+            posQueue.Enqueue(Vector2.zero);
+        }
     }
 
     private void FixedUpdate()
     {
+        Vector2 oldPos = posQueue.Dequeue();
+        posQueue.Enqueue(transform.position);
+
+        direction = ((Vector2)transform.position - oldPos).normalized;
+
         if (!fell)
         {
             switch (mood)

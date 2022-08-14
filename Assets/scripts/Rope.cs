@@ -41,9 +41,10 @@ public class Rope : MonoBehaviour
             Physics2D.Raycast((Vector2)dog.transform.position + direction * 0.2f,
             direction.normalized, distance * 0.6f, LayerMask.GetMask("Walker"));
 
-        if (hit.collider != null)
+        if (hit.collider != null && hit.collider.TryGetComponent(out Pedestrian pedestrian)
+            && Mathf.Abs(Vector2.Dot(direction.normalized, pedestrian.direction)) < 0.5)
         {
-            hit.collider.GetComponent<Pedestrian>().Fall();
+            pedestrian.Fall();
         }
     }
 
