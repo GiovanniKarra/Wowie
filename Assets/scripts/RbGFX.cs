@@ -14,7 +14,7 @@ public class RbGFX : MonoBehaviour
         rb = GetComponentInParent<Rigidbody2D>();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         Vector2 direction = rb.velocity;
         anim.Play(direction == Vector2.zero ? "Idle" : "Run");
