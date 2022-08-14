@@ -57,21 +57,6 @@ public class Dog : MonoBehaviour
     private void Update()
     {
         InterestDetect();
-        RopeDetect();
-    }
-
-    void RopeDetect()
-    {
-        if (mode == MODE.FREE) return;
-
-        RaycastHit2D hit =
-            Physics2D.Raycast(transform.position*0.8f + player.transform.position*0.2f,
-            player.transform.position - transform.position, ropeRange*0.6f, LayerMask.GetMask("Walker"));
-
-        if (hit.collider != null)
-        {
-            hit.collider.GetComponent<Pedestrian>().Fall();
-        }
     }
 
     void Stop(bool forced=false)
@@ -96,15 +81,17 @@ public class Dog : MonoBehaviour
     {
         if (mode != MODE.NORMAL) return;
 
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, perceptionRange, Vector3.forward, 1, LayerMask.GetMask("Interest"));
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, perceptionRange, Vector3.forward, 1);
 
         if (hits.Length != 0 && mode != MODE.INTEREST)
         {
             foreach (RaycastHit2D hit in hits)
             {
-                InterestPoint interestPoint = hit.collider.GetComponent<InterestPoint>();
-                if (!interestPoint.available) continue;
-                NewInterest(interestPoint, interestPoint.Type);
+                if (hit.collider.TryGetComponent(out InterestPoint interestPoint))
+                {
+                    if (!interestPoint.available) continue;
+                    NewInterest(interestPoint, interestPoint.Type);
+                }
             }
         }
     }
@@ -127,6 +114,7 @@ public class Dog : MonoBehaviour
         // valeurs placeholder
         //  /!\
         if (interest == null) return;
+        interest.gameObject.SetActive(true);
         if (rb.velocity == Vector2.zero && (interest.transform.position - transform.position).magnitude <= interest.radius)
         {
             interestValues[interest.Type] -= Mathf.Min(interest.valueLoss * Time.deltaTime, interestValues[interest.Type]);
@@ -147,6 +135,8 @@ public class Dog : MonoBehaviour
                     }
                     break;
                 case TYPE.AGGRO:
+                    // animation bagarre
+                    interest.gameObject.SetActive(false);
                     break;
             }
         }
@@ -155,6 +145,11 @@ public class Dog : MonoBehaviour
         {
             mode = MODE.NORMAL;
             interest.available = false;
+            interest = null;
+        }
+        else if ((interest.transform.position - transform.position).magnitude > interest.radius * 2f)
+        {
+            mode = MODE.NORMAL;
             interest = null;
         }
     }
