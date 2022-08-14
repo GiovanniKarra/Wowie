@@ -124,7 +124,8 @@ public class Dog : MonoBehaviour
             switch (interest.type)
             {
                 case TYPE.PISS:
-                    if (lastPiss == null || Vector2.Distance(lastPiss.transform.position, transform.position) > 3)
+                    if (lastPiss == null || Vector2.Distance(lastPiss.transform.position, transform.position) > 3
+                        && interestValues[interest.Type] <= 70)
                     {
                         lastPiss = Instantiate(piss, interest.transform.position, Quaternion.identity);
                     }
