@@ -169,7 +169,7 @@ public class Dog : MonoBehaviour
             interest = null;
         }
         else if (interacting && (Vector2.Distance(interest.transform.position, transform.position) > interest.radius * 2f)
-            || Vector2.Distance(interest.transform.position, transform.position) > perceptionRange)
+            || Vector2.Distance(interest.transform.position, transform.position) > perceptionRange + interest.radius)
         {
             mode = MODE.NORMAL;
             bagarreGFX.SetActive(false);
