@@ -113,6 +113,8 @@ public class Pedestrian : MonoBehaviour
 
         fell = true;
 
+        CamShake.Shake(0.3f, 0.5f, 5);
+
         Vector2 direction = (targetPos - transform.position).normalized; // si jamais je veux le propulser en avant
         Stop();
 
