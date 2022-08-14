@@ -8,7 +8,7 @@ public class Dog : MonoBehaviour
     public float perceptionRange;
 
     public InterestPoint interest;
-    MODE mode;
+    public MODE mode;
 
     PlayerCharacter player;
     [HideInInspector] public Rigidbody2D rb;
@@ -229,11 +229,11 @@ public class Dog : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, perceptionRange);
     }
+}
 
-    enum MODE
-    {
-        NORMAL,
-        INTEREST,
-        FREE
-    }
+public enum MODE
+{
+    NORMAL,
+    INTEREST,
+    FREE
 }
